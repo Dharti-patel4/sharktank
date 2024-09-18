@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+    
+
+
+</head>
+<body>
+
+   
+    <h1 align ="center">Description Page</h1>
+    <div class="card">
+      <div class="card-img">
+        44  
+        <img src="" alt="" id="image">
+      </div>
+      <div class="card-body">
+        <h4 class="card-title" id="title"></h4>
+        <p class="card-founder" id="founder"></p>
+        <p class="card-category" id="category"></p>
+        <p class="card-price" id="price"></p>
+        <button class="addTocart">Add To Cart</button>
+      </div> 
+    </div>
+
+    <script>
+
+                                                                    
+      const param = new URLSearchParams(window.location.search);
+      window.addEventListener('load',()=>
+    {
+           
+      console.log(param)
+
+const cartData = {
+
+  
+  title : param.get('title'),
+  price : param.get('price'),
+  image : param.get('image'),
+  category : param.get('category'),
+  founder : param.get('founder'),
+}
+
+
+    })
+      let image = document.getElementById('image').src = param.get('image') 
+
+      let title = document.getElementById('title').innerHTML = param.get('title')
+
+      let price = document.getElementById('price').innerHTML = param.get('price')
+
+      let category = document.getElementById('category').innerHTML = param.get('category')
+
+      let founder = document.getElementById('founder').innerHTML = param.get('founder')
+
+
+      addTocart.addEventListener('click' , ()=>
+    {
+      let cartobj = {
+        image : param.get('image'),
+        title : param.get('title'),
+        price : param.get('price'),
+        category : param.get('category'),
+        founder : param.get('founder'),
+
+
+      }
+      console.log(cartobj)
+      fetch('https://localhost:3000/cart',{
+        method : 'POST',
+        headers : {'Content-Type' : 'application/json'},
+        body : JSON.stringify(cartobj)
+        
+      })
+      .then((res) => res.json())
+    .then((data) => fetchdata())
+    .catch((err) => console.log(err));
+    })
+ 
+    </script>
+  
+</body>
+</html>
+
